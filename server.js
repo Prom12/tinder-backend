@@ -14,16 +14,15 @@ app.use(express.json());
 app.use(Cors());
 
 //listener
-
+app.listen(port,()=>console.log(`listening on localhost: ${port}`));
 
 //DB Config
 mongoose.connect(connection_url,{
     useNewUrlParser: true,
     useCreateIndex:true,
     useUnifiedTopology: true,
-  }).then(()=>{app.listen(port,()=>console.log(`listening on localhost: ${port}`));})
-  .catch((err)=>{console.log(err)})
-  
+  })
+    
 app.get('/', (req,res,next)=>{
     res.status(200).send('Romeo')
 })
