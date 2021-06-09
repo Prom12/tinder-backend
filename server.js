@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import Cors from 'cors'
 
 import card from './dbCards.js'
-const connection_url = "mongodb+srv://admin:KLwS3Rp4cGh62r4i@cluster0.q9cfs.mongodb.net/portfolio_db?retryWrites=true&w=majority"
+const connection_url = "mongodb+srv://dbUser:go95jQCINFHlxcDN@cluster0.pgoba.mongodb.net/Tinder?retryWrites=true&w=majority"
 
 //App config
 const app = express();
@@ -14,14 +14,15 @@ app.use(express.json());
 app.use(Cors());
 
 //listener
-app.listen(port,()=>console.log(`listening on localhost: ${port}`));
+
 
 //DB Config
 mongoose.connect(connection_url,{
     useNewUrlParser: true,
     useCreateIndex:true,
     useUnifiedTopology: true,
-  })
+  }).then(()=>{app.listen(port,()=>console.log(`listening on localhost: ${port}`));})
+  .catch((err)=>{console.log(err)})
   
 app.get('/', (req,res,next)=>{
     res.status(200).send('Romeo')
