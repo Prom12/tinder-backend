@@ -1,13 +1,13 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import Cors from 'cors'
-
+import {} from "dotenv/config"
 import card from './dbCards.js'
-const connection_url = "mongodb+srv://dbUser:go95jQCINFHlxcDN@cluster0.pgoba.mongodb.net/Tinder?retryWrites=true&w=majority"
+
 
 //App config
 const app = express();
-let port = process.env.PORT || '3000';
+let port = process.env.PORT || '5000';
 
 //middleware
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(Cors());
 app.listen(port,()=>console.log(`listening on localhost: ${port}`));
 
 //DB Config
-mongoose.connect(connection_url,{
+mongoose.connect(process.env.DBURL,{
     useNewUrlParser: true,
     useCreateIndex:true,
     useUnifiedTopology: true,
